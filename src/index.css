@@ -1,0 +1,247 @@
+:root {
+  --brand-navy: #1e3a5f;
+  --brand-navy-dark: #16304f;
+  --brand-gold: #f0a500;
+  --brand-light-blue: #eaf1f8;
+  --brand-text-muted: #6c7a89;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #f7f7f5;
+}
+
+/* ---------- Navbar ---------- */
+.site-navbar {
+  background-color: var(--brand-light-blue);
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid #dbe3ec;
+}
+
+.brand-logo-text {
+  font-weight: 800;
+  color: #2e5e88;
+  line-height: 1.1;
+  font-size: 1.05rem;
+}
+
+.brand-logo-sub {
+  font-size: 0.6rem;
+  color: var(--brand-text-muted);
+  letter-spacing: 0.5px;
+}
+
+.btn-brand-navy {
+  background-color: #2e5e88;
+  border-color: #2e5e88;
+  color: #fff;
+}
+
+.btn-brand-navy:hover {
+  background-color: #2e5e88;
+  border-color: #2e5e88;
+  color: #fff;
+}
+
+.btn-outline-brand-navy {
+  border-color: transparent;
+  color: #000;
+}
+
+.btn-outline-brand-navy:hover {
+  background: color #2e5e88;;
+  color: #2e5e88;
+}
+
+/* ---------- Hero / Split Page ---------- */
+.auth-page-wrapper {
+  position: relative;
+  min-height: calc(100vh - 68px);
+  overflow: hidden;
+}
+
+.hero-side {
+  background-color: #2e5e88;
+  color: #fff;
+  min-height: calc(100vh - 68px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 3.5rem;
+}
+
+.hero-side h1 {
+  font-weight: 800;
+  font-size: 2.75rem;
+}
+
+.hero-feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+}
+
+.hero-photo-side {
+  position: relative;
+  min-height: calc(100vh - 68px);
+  background-image: url('/background.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 3rem;
+}
+
+.hero-tagline h2 {
+  font-weight: 800;
+  color: #fff;
+}
+
+.hero-tagline .accent-gold {
+  color: var(--brand-gold);
+}
+
+/* ---------- Auth Card ---------- */
+.auth-card-floating {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 400px;
+  background: #f7f7f5;
+  border-radius: 14px;
+  box-shadow: 0 15px 45px rgba(15, 30, 60, 0.25);
+  padding: 2rem 2.25rem;
+  z-index: 10;
+}
+
+.auth-card-floating.register-card {
+  max-width: 720px;
+}
+
+.auth-card-logo {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.loginbox{
+  width: 100%;
+  max-width: 400px;
+  background: #f7f7f5;
+  border-radius: 14px;
+  box-shadow: 0 15px 45px rgba(151, 152, 168, 0.25);
+  padding: 2rem 2.25rem;
+}
+.role-toggle-group .btn:first-child {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 150px;
+}
+.role-toggle-group .btn:last-child {
+  position: absolute;
+  top: 0.25rem;
+  left: 155px;
+  width: 150px;
+}
+
+.role-toggle-group .btn-brand-navy {
+  box-shadow: inset 0 0 0 1px (#2e5e88);
+}
+
+.field-box {
+            border: 1.5px solid #d0d7e2;
+            border-radius: 12px;
+            padding: 10px 16px 10px 16px;
+            background: #fff;
+            position: relative;
+            min-height: 62px;
+        }
+ 
+.field-box .field-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 2px;
+            display: block;
+        }
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--brand-text-muted);
+  padding: 0;
+}
+
+.link-brand-navy {
+  color: #2e5e88;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link-brand-navy:hover {
+  text-decoration: underline;
+}
+
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--brand-text-muted);
+  font-size: 0.85rem;
+  margin: 1rem 0;
+}
+
+.divider-text::before,
+.divider-text::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e0e5ea;
+}
+
+.divider-text::before {
+  margin-right: 0.75rem;
+}
+
+.divider-text::after {
+  margin-left: 0.75rem;
+}
+
+.google-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid #e0e5ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+  .hero-photo-side {
+    display: none;
+  }
+  .auth-card-floating {
+    position: static;
+    transform: none;
+    margin: 2rem auto;
+  }
+  .hero-side {
+    min-height: auto;
+    padding: 2.5rem 1.5rem;
+  }
+
+}
+  
