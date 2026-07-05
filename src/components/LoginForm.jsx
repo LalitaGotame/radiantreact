@@ -1,6 +1,8 @@
 import { useState } from "react";
 import logo from '../assets/logo.jpg';
 
+
+
 const initialValues = { email: "", password: "" };
 
 export default function LoginForm({ onSwitchToRegister }) {
@@ -59,7 +61,7 @@ export default function LoginForm({ onSwitchToRegister }) {
         </div>
       </div>
      
-<div className=" loginbox d-flex align-items-center h-100 bg-white rounded-pill p-1" role="group">   
+<div className=" loginbox d-flex align-items-center bg-white rounded-pill p-1" role="group">   
        <button
           type="button"
           className={`btn flex-fill rounded-pill ${
@@ -84,57 +86,57 @@ export default function LoginForm({ onSwitchToRegister }) {
 
       
       <form noValidate onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="login-email" className="field-box">
-            Email
-          </label>
-          <input
-            type="email"
-            id="login-email"
-            name="email"
-            className={`form-control ${errors.email ? "is-invalid" : ""}`}
-            placeholder="Enter your email address"
-            value={values.email}
-            onChange={handleChange}
-          />
-          {errors.email && (
-            <div className="invalid-feedback">{errors.email}</div>
-          )}
-        </div>
+        <div className={`field-box my-3 ${errors.email ? "has-error" : ""}`}>
+  <label htmlFor="login-email" className="field-label">
+    Email
+  </label>
+  <input
+    type="email"
+    id="login-email"
+    name="email"
+    className="form-control field-input"
+    placeholder="Enter your email address"
+    value={values.email}
+    onChange={handleChange}
+  />
+</div>
+{errors.email && (
+  <div className="text-danger mb-2" style={{ fontSize: "0.8rem" }}>
+    {errors.email}
+  </div>
+)}
 
-        <div className="mb-2">
-          <label htmlFor="login-password" className="field-box">
-            Password
-          </label>
-          <div className="password-input-wrapper">
-            <input
-              type={showPassword ? "text" : "password"}
-              id="login-password"
-              name="password"
-              className={`form-control ${
-                errors.password ? "is-invalid" : ""
-              }`}
-              placeholder="Enter your password"
-              value={values.password}
-              onChange={handleChange}
-            />
-            <button
-              type="button"
-              className="password-toggle-btn"
-              onClick={() => setShowPassword((s) => !s)}
-              aria-label="Toggle password visibility"
-            >
-              {showPassword ? "🙈" : "👁️"}
-            </button>
-            {errors.password && (
-              <div className="invalid-feedback d-block">zz
-                {errors.password}
-              </div>
-            )}
-          </div>
-        </div>
+<div className={`field-box my-2 ${errors.password ? "has-error" : ""}`}>
+  <label htmlFor="login-password" className="field-label">
+    Password
+  </label>
+  <div className="d-flex align-items-center">
+    <input
+      type={showPassword ? "text" : "password"}
+      id="login-password"
+      name="password"
+      className="form-control field-input"
+      placeholder="Enter your password"
+      value={values.password}
+      onChange={handleChange}
+    />
+    <button
+      type="button"
+      className="btn btn-sm p-0 border-0 ms-auto"
+      onClick={() => setShowPassword((s) => !s)}
+      aria-label="Toggle password visibility"
+    >
+      <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
+    </button>
+  </div>
+</div>
+{errors.password && (
+  <div className="text-danger mb-2" style={{ fontSize: "0.8rem" }}>
+    {errors.password}
+  </div>
+)}
 
-        <div className="text-end mb-3" style={{ fontSize: "0.85rem" }}>
+        <div className="text-center mb-3" style={{ fontSize: "0.85rem" }}>
           Forgot Password ?{" "}
           <a href="#!" className="link-brand-navy">
             Click Here!

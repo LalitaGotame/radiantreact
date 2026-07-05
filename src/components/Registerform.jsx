@@ -298,7 +298,7 @@ export default function RegisterForm({ onSwitchToLogin }) {
                 onClick={() => setShowPassword((s) => !s)}
                 aria-label="Toggle password visibility"
               >
-                {showPassword ? "🙈" : "👁️"}
+               <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i> 
               </button>
               {errors.password && (
                 <div className="invalid-feedback d-block">
@@ -352,7 +352,7 @@ export default function RegisterForm({ onSwitchToLogin }) {
                 onClick={() => setShowRetypePassword((s) => !s)}
                 aria-label="Toggle password visibility"
               >
-                {showRetypePassword ? "🙈" : "👁️"}
+               <i className={showRetypePassword ? "bi bi-eye-slash" : "bi bi-eye"}></i> 
               </button>
               {errors.retypePassword && (
                 <div className="invalid-feedback d-block">
