@@ -1,383 +1,336 @@
-import { useState } from "react";
-import logo from '../assets/logo.jpg';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import FieldBox from './FieldBox.jsx'
+import logo from '../assets/logo.png'
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const nepalPhonePattern = /^(97|98)\d{8}$|^0[1-9]\d{6,8}$/
+const strongPasswordPattern =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_#^])[A-Za-z\d@$!%*?&_#^]{8,}$/
 
 const initialValues = {
-  fullName: "",
-  dob: "",
-  email: "",
-  gender: "",
-  role: "",
-  address: "",
-  phone: "",
-  photo: null,
-  password: "",
-  retypePassword: "",
-};
+  fullname: '',
+  dob: '',
+  email: '',
+  gender: '',
+  role: '',
+  address: '',
+  phone: '',
+  password: '',
+  confirmPassword: '',
+}
 
-export default function RegisterForm({ onSwitchToLogin }) {
-  const [values, setValues] = useState(initialValues);
-  const [errors, setErrors] = useState({});
-  const [showPassword, setShowPassword] = useState(false);
-  const [showRetypePassword, setShowRetypePassword] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [photoName, setPhotoName] = useState("");
+export default function RegisterForm() {
+  const [values, setValues] = useState(initialValues)
+  const [errors, setErrors] = useState({})
+  const [photoFile, setPhotoFile] = useState(null)
+  const [photoPreview, setPhotoPreview] = useState(null)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phonePattern = /^[0-9]{7,15}$/;
+  const validate = (data, photo) => {
+    const newErrors = {}
 
-  const validate = (data) => {
-    const newErrors = {};
-
-    if (!data.fullName.trim()) {
-      newErrors.fullName = "Full name is required.";
-    } else if (data.fullName.trim().length < 3) {
-      newErrors.fullName = "Full name must be at least 3 characters.";
+    if (!data.fullname.trim()) {
+      newErrors.fullname = 'Full name is required.'
+    } else if (data.fullname.trim().length < 2) {
+      newErrors.fullname = 'Name must be at least 2 characters.'
     }
 
     if (!data.dob) {
-      newErrors.dob = "Date of birth is required.";
+      newErrors.dob = 'Date of birth is required.'
     } else {
-      const dobDate = new Date(data.dob);
-      const age = (Date.now() - dobDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
-      if (dobDate.getTime() > Date.now()) {
-        newErrors.dob = "Date of birth cannot be in the future.";
-      } else if (age < 5) {
-        newErrors.dob = "You must be at least 5 years old.";
+      const today = new Date()
+      const dob = new Date(data.dob)
+      let age = today.getFullYear() - dob.getFullYear()
+      const monthDiff = today.getMonth() - dob.getMonth()
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--
       }
+      if (age < 16) newErrors.dob = 'You must be at least 16 years old.'
     }
 
     if (!data.email.trim()) {
-      newErrors.email = "Email is required.";
+      newErrors.email = 'Email is required.'
     } else if (!emailPattern.test(data.email.trim())) {
-      newErrors.email = "Please enter a valid email address.";
+      newErrors.email = 'Please enter a valid email address.'
     }
 
-    if (!data.gender) {
-      newErrors.gender = "Please select a gender.";
-    }
+    if (!data.gender) newErrors.gender = 'Please select your gender.'
+    if (!data.role) newErrors.role = 'Please select your role.'
 
-    if (!data.role) {
-      newErrors.role = "Please select a role.";
-    }
-
-    if (!data.address.trim()) {
-      newErrors.address = "Address is required.";
-    }
+    if (!data.address.trim()) newErrors.address = 'Address is required.'
 
     if (!data.phone.trim()) {
-      newErrors.phone = "Phone number is required.";
-    } else if (!phonePattern.test(data.phone.trim())) {
-      newErrors.phone = "Enter a valid phone number (digits only).";
+      newErrors.phone = 'Phone number is required.'
+    } else if (!nepalPhonePattern.test(data.phone.trim())) {
+      newErrors.phone = 'Enter a valid Nepal phone number (e.g. 98XXXXXXXX).'
     }
 
-    if (!data.photo) {
-      newErrors.photo = "Please select a profile photo.";
+    if (!photo) {
+      newErrors.photo = 'Please upload a profile photo.'
     }
 
     if (!data.password) {
-      newErrors.password = "Password is required.";
-    } else if (data.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters.";
+      newErrors.password = 'Password is required.'
+    } else if (!strongPasswordPattern.test(data.password)) {
+      newErrors.password =
+        'Min 8 chars with uppercase, lowercase, number & special character.'
     }
 
-    if (!data.retypePassword) {
-      newErrors.retypePassword = "Please re-enter your password.";
-    } else if (data.retypePassword !== data.password) {
-      newErrors.retypePassword = "Passwords do not match.";
+    if (!data.confirmPassword) {
+      newErrors.confirmPassword = 'Please re-enter your password.'
+    } else if (data.confirmPassword !== data.password) {
+      newErrors.confirmPassword = 'Passwords do not match.'
     }
 
-    return newErrors;
-  };
+    return newErrors
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    const updated = { ...values, [name]: value };
-    setValues(updated);
-    if (submitted) {
-      setErrors(validate(updated));
-    }
-  };
+    const { name, value } = e.target
+    const updated = { ...values, [name]: value }
+    setValues(updated)
+    if (submitted) setErrors(validate(updated, photoFile))
+  }
 
   const handlePhotoChange = (e) => {
-    const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
-    const updated = { ...values, photo: file };
-    setValues(updated);
-    setPhotoName(file ? file.name : "");
-    if (submitted) {
-      setErrors(validate(updated));
-    }
-  };
+    const file = e.target.files?.[0] ?? null
+    setPhotoFile(file)
+    setPhotoPreview(file ? URL.createObjectURL(file) : null)
+    if (submitted) setErrors(validate(values, file))
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    const validationErrors = validate(values);
-    setErrors(validationErrors);
+    e.preventDefault()
+    setSubmitted(true)
+    const validationErrors = validate(values, photoFile)
+    setErrors(validationErrors)
 
     if (Object.keys(validationErrors).length === 0) {
-      alert(`Account created for ${values.fullName}! You can now log in.`);
-      onSwitchToLogin();
+      alert('Registration successful! Welcome to Radiant Elite Tutors.')
     }
-  };
+  }
 
   return (
-    <div className="auth-card-floating register-card " >
+    <div className="register-form-panel">
       <div className="auth-card-logo">
-        <div style={{ fontSize: "2rem" }} role="img" aria-label="owl logo">
-          <img src={logo} alt="logo" style={{width:'100px', height:'50px'}} />
-        </div>
-        
+        <img src={logo} alt="Radiant Elite Tutors" width="260" />
       </div>
 
       <form noValidate onSubmit={handleSubmit}>
         <div className="row g-3">
           <div className="col-md-6">
-            <label htmlFor="fullName" className="field-label-sm">
-              Full Name<span className="text-danger">*</span>
-            </label>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              className={`field-label ${errors.fullName ? "is-invalid" : ""}`}
-              placeholder="Enter your full name"
-              value={values.fullName}
-              onChange={handleChange}
-            />
-            {errors.fullName && (
-              <div className="invalid-feedback">{errors.fullName}</div>
-            )}
-          </div>
-
-          <div className="col-md-6">
-            <label htmlFor="dob" className="form-label-sm">
-              DOB<span className="text-danger">*</span>
-            </label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              className={`field-label ${errors.dob ? "is-invalid" : ""}`}
-              value={values.dob}
-              onChange={handleChange}
-            />
-            {errors.dob && <div className="invalid-feedback">{errors.dob}</div>}
-          </div>
-
-          <div className="col-md-6">
-            <label htmlFor="reg-email" className="form-label-sm">
-              Email<span className="text-danger">*</span>
-            </label>
-            <input
-              type="email"
-              id="reg-email"
-              name="email"
-              className={`field-label ${errors.email ? "is-invalid" : ""}`}
-              placeholder="Enter your email address"
-              value={values.email}
-              onChange={handleChange}
-            />
-            {errors.email && (
-              <div className="invalid-feedback">{errors.email}</div>
-            )}
-          </div>
-
-          <div className="col-md-6">
-            <label className="form-label-sm d-block">
-              Gender<span className="text-danger">*</span>
-            </label>
-            <div className="d-flex gap-3 pt-1">
-              {["Male", "Female", "Others"].map((g) => (
-                <div className="form-check" key={g}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="gender"
-                    id={`gender-${g}`}
-                    value={g}
-                    checked={values.gender === g}
-                    onChange={handleChange}
-                  />
-                  <label className="form-check-label" htmlFor={`gender-${g}`}>
-                    {g}
-                  </label>
-                </div>
-              ))}
-            </div>
-            {errors.gender && (
-              <div className="text-danger" style={{ fontSize: "0.8rem" }}>
-                {errors.gender}
-              </div>
-            )}
-          </div>
-
-          <div className="col-md-6">
-            <label className="form-label-sm d-block">
-              Your Role<span className="text-danger">*</span>
-            </label>
-            <div className="d-flex gap-3 pt-1">
-              {["Student", "Teacher"].map((r) => (
-                <div className="form-check" key={r}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="role"
-                    id={`role-${r}`}
-                    value={r}
-                    checked={values.role === r}
-                    onChange={handleChange}
-                  />
-                  <label className="form-check-label" htmlFor={`role-${r}`}>
-                    {r}
-                  </label>
-                </div>
-              ))}
-            </div>
-            {errors.role && (
-              <div className="text-danger" style={{ fontSize: "0.8rem" }}>
-                {errors.role}
-              </div>
-            )}
-          </div>
-
-          <div className="col-md-6">
-            <label htmlFor="address" className="form-label-sm">
-              Address<span className="text-danger">*</span>
-            </label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              className={`field-label ${errors.address ? "is-invalid" : ""}`}
-              placeholder="Enter your address"
-              value={values.address}
-              onChange={handleChange}
-            />
-            {errors.address && (
-              <div className="invalid-feedback">{errors.address}</div>
-            )}
-          </div>
-
-          <div className="col-md-6">
-            <label htmlFor="phone" className="form-label-sm">
-              Phone<span className="text-danger">*</span>
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              className={`field-label ${errors.phone ? "is-invalid" : ""}`}
-              placeholder="Enter your phone number"
-              value={values.phone}
-              onChange={handleChange}
-            />
-            {errors.phone && (
-              <div className="invalid-feedback">{errors.phone}</div>
-            )}
-          </div>
-
-          <div className="col-md-6">
-            <label htmlFor="password" className="form-label-sm">
-              Password<span className="text-danger">*</span>
-            </label>
-            <div className="password-input-wrapper">
+            <FieldBox label="Full Name" required error={errors.fullname}>
               <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                className={`field-label ${
-                  errors.password ? "is-invalid" : ""
-                }`}
-                placeholder="Enter your password"
-                value={values.password}
+                type="text"
+                name="fullname"
+                className="field-input"
+                placeholder="Enter your full name"
+                value={values.fullname}
                 onChange={handleChange}
               />
-              <button
-                type="button"
-                className="password-toggle-btn"
-                onClick={() => setShowPassword((s) => !s)}
-                aria-label="Toggle password visibility"
-              >
-               <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i> 
-              </button>
-              {errors.password && (
-                <div className="invalid-feedback d-block">
-                  {errors.password}
-                </div>
-              )}
-            </div>
+            </FieldBox>
           </div>
 
           <div className="col-md-6">
-            <label htmlFor="photo" className="form-label-sm">
-              Photo<span className="text-danger">*</span>
-            </label>
-            <input
-              type="file"
-              id="photo"
-              name="photo"
-              accept="image/*"
-              className={`field-label ${errors.photo ? "is-invalid" : ""}`}
-              onChange={handlePhotoChange}
-            />
-            {photoName && (
-              <div className="text-muted mt-1" style={{ fontSize: "0.75rem" }}>
-                Selected: {photoName}
-              </div>
-            )}
-            {errors.photo && (
-              <div className="invalid-feedback d-block">{errors.photo}</div>
-            )}
-          </div>
-
-          <div className="col-md-6">
-            <label htmlFor="retypePassword" className="field-label-sm">
-              Re-type Password<span className="text-danger">*</span>
-            </label>
-            <div className="password-input-wrapper">
+            <FieldBox label="DOB" required error={errors.dob}>
               <input
-                type={showRetypePassword ? "text" : "password"}
-                id="retypePassword"
-                name="retypePassword"
-                className={`field-label ${
-                  errors.retypePassword ? "is-invalid" : ""
-                }`}
-                placeholder="Re-enter your password"
-                value={values.retypePassword}
+                type="date"
+                name="dob"
+                className="field-input"
+                value={values.dob}
                 onChange={handleChange}
               />
-              <button
-                type="button"
-                className="password-toggle-btn"
-                onClick={() => setShowRetypePassword((s) => !s)}
-                aria-label="Toggle password visibility"
-              >
-               <i className={showRetypePassword ? "bi bi-eye-slash" : "bi bi-eye"}></i> 
-              </button>
-              {errors.retypePassword && (
-                <div className="invalid-feedback d-block">
-                  {errors.retypePassword}
-                </div>
-              )}
+            </FieldBox>
+          </div>
+
+          <div className="col-md-6">
+            <FieldBox label="Email" required error={errors.email}>
+              <input
+                type="email"
+                name="email"
+                className="field-input"
+                placeholder="Enter your email address"
+                value={values.email}
+                onChange={handleChange}
+              />
+            </FieldBox>
+          </div>
+
+          <div className="col-md-6">
+            <div className="radio-field-box">
+              <span className="field-label">
+                Gender<span className="required">*</span>
+              </span>
+              <div className="radio-options">
+                {['male', 'female', 'others'].map((opt) => (
+                  <label key={opt}>
+                    <input
+                      type="radio"
+                      name="gender"
+                      value={opt}
+                      checked={values.gender === opt}
+                      onChange={handleChange}
+                    />
+                    {opt[0].toUpperCase() + opt.slice(1)}
+                  </label>
+                ))}
+              </div>
             </div>
+            {errors.gender && <span className="invalid-msg">{errors.gender}</span>}
+          </div>
+
+          <div className="col-md-6">
+            <div className="radio-field-box">
+              <span className="field-label">
+                Your Role<span className="required">*</span>
+              </span>
+              <div className="radio-options">
+                {['student', 'teacher'].map((opt) => (
+                  <label key={opt}>
+                    <input
+                      type="radio"
+                      name="role"
+                      value={opt}
+                      checked={values.role === opt}
+                      onChange={handleChange}
+                    />
+                    {opt[0].toUpperCase() + opt.slice(1)}
+                  </label>
+                ))}
+              </div>
+            </div>
+            {errors.role && <span className="invalid-msg">{errors.role}</span>}
+          </div>
+
+          <div className="col-md-6">
+            <FieldBox label="Address" required error={errors.address}>
+              <input
+                type="text"
+                name="address"
+                className="field-input"
+                placeholder="Enter your address"
+                value={values.address}
+                onChange={handleChange}
+              />
+            </FieldBox>
+          </div>
+
+          <div className="col-md-6">
+            <FieldBox label="Phone" required error={errors.phone}>
+              <input
+                type="tel"
+                name="phone"
+                className="field-input"
+                placeholder="Enter your phone number"
+                value={values.phone}
+                onChange={handleChange}
+              />
+            </FieldBox>
+          </div>
+
+          <div className="col-md-6">
+            <FieldBox label="Password" required error={errors.password}>
+              <div className="password-input-wrapper d-flex align-items-center">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  className="field-input"
+                  placeholder="Enter your password"
+                  value={values.password}
+                  onChange={handleChange}
+                  style={{ paddingRight: 30 }}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword((s) => !s)}
+                  aria-label="Toggle password visibility"
+                >
+                  <i className={showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}></i>
+                </button>
+              </div>
+            </FieldBox>
+          </div>
+
+          <div className="col-md-6">
+            <div className={`photo-box ${errors.photo ? 'has-error' : ''}`}>
+              <span className="field-label">Photo</span>
+              <span className="photo-placeholder">
+                {photoFile ? photoFile.name : 'Select your profile photo'}
+              </span>
+              <input type="file" accept="image/*" onChange={handlePhotoChange} />
+              <i className="fa fa-paperclip clip-icon"></i>
+            </div>
+            {errors.photo && <span className="invalid-msg">{errors.photo}</span>}
+          </div>
+
+          <div className="col-md-6">
+            {photoPreview && (
+              <img
+                src={photoPreview}
+                alt="Profile preview"
+                className="img-thumbnail"
+                style={{ maxWidth: '100%', maxHeight: 130 }}
+              />
+            )}
+          </div>
+
+          <div className="col-md-6">
+            <FieldBox
+              label="Re-type Password"
+              required
+              error={errors.confirmPassword}
+            >
+              <div className="password-input-wrapper d-flex align-items-center">
+                <input
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  name="confirmPassword"
+                  className="field-input"
+                  placeholder="Re-enter your password"
+                  value={values.confirmPassword}
+                  onChange={handleChange}
+                  style={{ paddingRight: 30 }}
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowConfirmPassword((s) => !s)}
+                  aria-label="Toggle confirm password visibility"
+                >
+                  <i
+                    className={showConfirmPassword ? 'bi bi-eye-slash' : 'bi bi-eye'}
+                  ></i>
+                </button>
+              </div>
+            </FieldBox>
           </div>
         </div>
 
-        <button type="submit" className="btn btn-brand-navy w-100 mt-4">
-          Register
-        </button>
-
-        <p className="text-center mt-3 mb-0" style={{ fontSize: "0.9rem" }}>
-          Already have an account?{" "}
-          <button
-            type="button"
-            className="btn btn-link p-0 link-brand-navy"
-            onClick={onSwitchToLogin}
-          >
-            Login!
+        <div className="text-center mt-4">
+          <button type="submit" className="btn btn-auth-submit">
+            Register
           </button>
-        </p>
+        </div>
+
+        <div className="text-center mt-3" style={{ fontSize: '0.85rem' }}>
+          Already have an account?{' '}
+          <Link to="/" className="link-brand-navy">
+            Sign In!
+          </Link>
+        </div>
+
+        <div className="text-center mt-3" style={{ fontSize: '0.85rem' }}>
+          Or sign in with
+        </div>
+        <div className="text-center mt-2">
+          <a href="#!" className="google-btn" aria-label="Sign in with Google">
+            <i className="bi bi-google"></i>
+          </a>
+        </div>
       </form>
     </div>
-  );
+  )
 }

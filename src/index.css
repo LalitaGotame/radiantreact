@@ -1,69 +1,103 @@
 :root {
-  --brand-navy: #1e3a5f;
-  --brand-navy-dark: #16304f;
+  --brand-navy: #2e5e88;
+  --brand-navy-dark: #1a3a5c;
   --brand-gold: #f0a500;
   --brand-light-blue: #eaf1f8;
   --brand-text-muted: #6c7a89;
+  --field-border: #aeaeae;
+  --page-bg: #f7f7f5;
 }
 
 body {
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background-color: #f7f7f5;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--page-bg);
 }
 
 /* ---------- Navbar ---------- */
 .site-navbar {
-  background-color: var(--brand-light-blue);
+  background-color: #fff;
   padding: 0.75rem 1.5rem;
-  border-bottom: 1px solid #dbe3ec;
+  box-shadow: 0 2px 10px rgba(20, 30, 50, 0.06);
 }
 
-.brand-logo-text {
-  font-weight: 800;
-  color: #2e5e88;
-  line-height: 1.1;
-  font-size: 1.05rem;
+.search-box {
+  width: 380px;
+  max-width: 40vw;
+  border-radius: 12px;
+}
+.btn-search {
+  background-color: #fff;
+  color: #000;
+  border:1px solid  #2e5e88
 }
 
-.brand-logo-sub {
-  font-size: 0.6rem;
-  color: var(--brand-text-muted);
-  letter-spacing: 0.5px;
-}
-
-.btn-brand-navy {
+.btn-search:hover {
   background-color: #2e5e88;
-  border-color: #2e5e88;
   color: #fff;
 }
 
-.btn-brand-navy:hover {
-  background-color: #2e5e88;
-  border-color: #2e5e88;
+.btn-brand-navy {
+  background-color: var(--brand-navy);
+  border-color: var(--brand-navy);
+  color: #fff;
+}
+
+.btn-brand-navy:hover,
+.btn-brand-navy:focus {
+  background-color: var(--brand-navy-dark);
+  border-color: var(--brand-navy-dark);
   color: #fff;
 }
 
 .btn-outline-brand-navy {
-  border-color: transparent;
-  color: #000;
+  border: 1px solid var(--brand-navy);
+  background: transparent;
+  color: var(--brand-navy);
 }
 
 .btn-outline-brand-navy:hover {
-  background: color #2e5e88;;
-  color: #2e5e88;
+  background-color: var(--brand-navy);
+  color: #fff;
 }
 
-/* ---------- Hero / Split Page ---------- */
+.nav-auth-link {
+  text-decoration: none;
+  padding: 8px 22px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.nav-auth-link.is-active {
+  background-color: var(--brand-navy);
+  color: #fff;
+}
+
+.nav-auth-link.is-inactive {
+  background-color: transparent;
+  color: var(--brand-navy);
+  border: 1px solid var(--brand-navy);
+}
+
+/* ---------- Split auth layout ---------- */
+/* Figma export: navy panel 572 / photo panel 940 -> ~37.8% / 62.2% split */
 .auth-page-wrapper {
   position: relative;
-  min-height: calc(100vh - 68px);
+  min-height: calc(100vh - 76px);
   overflow: hidden;
 }
 
+.auth-page-row {
+  display: flex;
+  min-height: calc(100vh - 76px);
+}
+
 .hero-side {
-  background-color: #2e5e88;
+  flex: 0 0 38%;
+  max-width: 38%;
+  background-color: var(--brand-navy);
   color: #fff;
-  min-height: calc(100vh - 68px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,6 +107,7 @@ body {
 .hero-side h1 {
   font-weight: 800;
   font-size: 2.75rem;
+  line-height: 1.15;
 }
 
 .hero-feature-icon {
@@ -80,84 +115,142 @@ body {
   align-items: center;
   justify-content: center;
   width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
 }
 
 .hero-photo-side {
+  flex: 1;
   position: relative;
-  min-height: calc(100vh - 68px);
-  background-image: url('/background.jpg');
+  background-image: url("./assets/background.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: flex-end;
-  padding: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
 }
 
-.hero-tagline h2 {
+.hero-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: #e6f2ff;
+  opacity: 0.4;
+  backdrop-filter: blur(4px);
+}
+
+.hero-tagline--login {
+  position: absolute;
+  right: 8%;
+  top: 42%;
+  transform: translateY(-50%);
+  text-align: left;
+  z-index: 3;
+  max-width: 34%;
+}
+
+.hero-tagline--register {
+  position: absolute;
+  left: 58%;
+  bottom: 6%;
+  text-align: left;
+  z-index: 3;
+  max-width: 34%;
+}
+
+.tagline-text {
+  font-size: 2.25rem;
   font-weight: 800;
-  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
 }
 
-.hero-tagline .accent-gold {
+.t-white {
+  color: #1e4570;
+}
+
+.t-gold {
   color: var(--brand-gold);
 }
 
-/* ---------- Auth Card ---------- */
-.auth-card-floating {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 400px;
-  background: #f7f7f5;
-  border-radius: 14px;
-  box-shadow: 0 15px 45px rgba(15, 30, 60, 0.25);
-  padding: 2rem 2.25rem;
-  z-index: 10;
+.tagline-sub {
+  font-size: 1.05rem;
+  color: #4a7199;
+  font-weight: 500;
+  margin: 0;
 }
-
-.auth-card-floating.register-card {
-  max-width: 720px;
+/* ---------- Auth card (login) ---------- */
+/* Figma export: white card 449 x 611, radius 20 */
+.auth-card-floating {
+  position: relative;
+  z-index: 10;
+  width: 449px;
+  max-width: 92vw;
+  background: var(--page-bg);
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(15, 30, 60, 0.25);
+  padding: 2.25rem 2.5rem;
+  left:center;
 }
 
 .auth-card-logo {
   text-align: center;
   margin-bottom: 1.25rem;
 }
-.loginbox{
+
+/* Student / Teacher toggle pill */
+.loginbox {
   width: 100%;
-  max-width: 400px;
-  height: 65px;
-  background: #f7f7f5;
-  border-radius: 14px;
-  box-shadow: 0 15px 45px rgba(151, 152, 168, 0.25);
-  padding: 2rem 2.25rem;
-}
-.role-toggle-group .btn:first-child {
-  position: absolute;
-  top: 0.25rem;
-  left: 0.25rem;
-  width: 150px;
-}
-.role-toggle-group .btn:last-child {
-  position: absolute;
-  top: 0.25rem;
-  left: 155px;
-  width: 150px;
-}
-
-.role-toggle-group .btn-brand-navy {
-  box-shadow: inset 0 0 0 1px (#2e5e88);
-}
-
-.field-box {
-  border: 1.5px solid #d0d7e2;
-  border-radius: 20px;
-  padding: 10px 16px;
+  min-height: 56px;
   background: #fff;
-  position: relative;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px #eee;
+  padding: 0.35rem;
+  margin-bottom: 1.5rem;
+}
 
+.loginbox .btn {
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* ---------- Register layout (no floating card - fields sit
+   directly on the frosted glass panel, per Figma export) ---------- */
+
+.register-card-floating {
+  width: 100%;
+  max-width: 660px;      /* was ~940px — too wide for the column */
+  margin: 2rem auto;     /* centers it and adds breathing room top/bottom */
+  background: var(--page-bg);
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(15, 30, 60, 0.25);
+  padding: 2rem 2.5rem;
+  box-sizing: border-box;
+}
+
+.register-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* was center — flex-start avoids vertical clipping on tall forms */
+  width: 100%;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.register-form-panel {
+  width: 100%;
+  max-width: 940px;
+}
+
+/* ---------- Field boxes ---------- */
+/* Figma export: 329 x 62, radius 14.5, stroke #AEAEAE */
+.field-box {
+  border: 1.5px solid var(--field-border);
+  border-radius: 14px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  position: relative;
 }
 
 .field-box.has-error {
@@ -172,17 +265,95 @@ body {
   margin-bottom: 2px;
 }
 
+.field-box .required {
+  color: #dc3545;
+  margin-left: 2px;
+}
+
 .field-box .field-input {
   border: none;
   padding: 0;
   outline: none;
   box-shadow: none;
   width: 100%;
+  font-family: "Poppins", sans-serif;
+  background: transparent;
 }
 
 .field-box .field-input:focus {
   outline: none;
   box-shadow: none;
+}
+
+.invalid-msg {
+  font-size: 0.75rem;
+  color: #dc3545;
+  margin-top: 4px;
+  display: block;
+}
+
+.radio-field-box .field-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.radio-options {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.radio-options label {
+  font-size: 0.85rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  margin: 0;
+}
+
+.radio-options input[type="radio"] {
+  accent-color: var(--brand-navy);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.photo-box {
+  border: 1.5px solid var(--field-border);
+  border-radius: 14px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  position: relative;
+  min-height: 62px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.photo-box .photo-placeholder {
+  font-size: 0.8rem;
+  color: #aab0bc;
+  font-style: italic;
+}
+
+.photo-box input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.photo-box .clip-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--brand-navy);
 }
 
 .password-input-wrapper {
@@ -200,66 +371,67 @@ body {
   padding: 0;
 }
 
+/* ---------- Buttons / links ---------- */
+/* Figma export: Login btn 119x44 radius 10, Register btn 97x44 radius 10 */
+.btn-auth-submit {
+  background: var(--brand-navy);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 40px;
+  font-weight: 600;
+  min-width: 119px;
+  min-height: 44px;
+  transition: background 0.2s;
+}
+
+.btn-auth-submit:hover {
+  background: var(--brand-navy-dark);
+  color: #fff;
+}
+
 .link-brand-navy {
-  color: #2e5e88;
+  color: var(--brand-navy);
   font-weight: 700;
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .link-brand-navy:hover {
   text-decoration: underline;
 }
 
-.divider-text {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: var(--brand-text-muted);
-  font-size: 0.85rem;
-  margin: 1rem 0;
-}
-
-.divider-text::before,
-.divider-text::after {
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid #e0e5ea;
-}
-
-.divider-text::before {
-  margin-right: 0.75rem;
-}
-
-.divider-text::after {
-  margin-left: 0.75rem;
-}
-
 .google-btn {
-  width: 42px;
-  height: 42px;
+  width: 70px;
+  height: 60px;
   border-radius: 50%;
-  border: 1px solid #e0e5ea;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  background: #fff;
+  background: transparent;
   cursor: pointer;
+  font-size: 1.6rem;
+  color: var(--brand-navy);
 }
 
 @media (max-width: 991.98px) {
-  .hero-photo-side {
-    display: none;
-  }
-  .auth-card-floating {
-    position: static;
-    transform: none;
-    margin: 2rem auto;
+  .auth-page-row {
+    flex-direction: column;
   }
   .hero-side {
+    flex: none;
+    max-width: 100%;
     min-height: auto;
     padding: 2.5rem 1.5rem;
   }
-
+  .hero-photo-side {
+    min-height: 100vh;
+  }
+  .hero-tagline {
+    display: none;
+  }
 }
-  
