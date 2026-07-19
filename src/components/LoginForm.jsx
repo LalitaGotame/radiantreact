@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate} from 'react-router-dom'
 import FieldBox from './FieldBox.jsx'
 import logo from '../assets/logo.png'
 
@@ -12,7 +12,7 @@ export default function LoginForm() {
   const [errors, setErrors] = useState({})
   const [showPassword, setShowPassword] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-
+  const navigate = useNavigate()
   const validate = (data) => {
     const newErrors = {}
 
@@ -45,7 +45,7 @@ export default function LoginForm() {
     setErrors(validationErrors)
 
     if (Object.keys(validationErrors).length === 0) {
-      alert(`Welcome back! Logging in as ${role} with ${values.email}`)
+      navigate('/home')
     }
   }
 

@@ -11,9 +11,9 @@ export default function RegisterPage() {
 
         <div className="hero-photo-side" style={{ alignItems: 'stretch' }}>
           <div className="register-page-wrapper">
-              <div className="register-card-floating">
+             
                <RegisterForm />
-               </div>
+             
            </div>
         </div>
       </div>

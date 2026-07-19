@@ -115,9 +115,11 @@ export default function RegisterForm() {
 
   return (
     <div className="register-form-panel">
+      <div className="register-card-floating">
       <div className="auth-card-logo">
         <img src={logo} alt="Radiant Elite Tutors" width="260" />
       </div>
+     
 
       <form noValidate onSubmit={handleSubmit}>
         <div className="row g-3">
@@ -332,5 +334,6 @@ export default function RegisterForm() {
         </div>
       </form>
     </div>
+     </div>
   )
 }
