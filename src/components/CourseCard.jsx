@@ -2,10 +2,7 @@ function Stars({ count }) {
   return (
     <span className="course-stars">
       {Array.from({ length: 5 }).map((_, i) => (
-        <i
-          key={i}
-          className={i < count ? 'bi bi-star-fill' : 'bi bi-star'}
-        ></i>
+        <i key={i} className={i < count ? 'bi bi-star-fill' : 'bi bi-star'}></i>
       ))}
     </span>
   )
@@ -34,24 +31,29 @@ export function ContinueCourseCard({ course }) {
   )
 }
 
-export default function CourseCard({ course,saved = false, onToggleSave  }) {
+export default function CourseCard({ course, saved = false, onToggleSave }) {
   return (
-     <div className="course-card">
+    <div className="course-card">
       <div className="course-card-image-wrap">
         <img src={course.thumb} alt="" className="course-card-image" />
-        <button
-          className="course-card-wishlist"
-          aria-label={saved ? 'Remove from saved' : 'Save course'}
-          onClick={onToggleSave}
-        >
-          <i className={saved ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
-        </button>
+        <span className="course-card-type-badge">Course</span>
       </div>
 
       <div className="course-card-body">
-        <div className="course-card-date">{course.dateRange}</div>
+        <div className="course-card-meta-row">
+          <span className="course-card-duration">
+            Duration: {course.duration ?? 'N/A'}
+          </span>
+          <button
+            className="course-card-wishlist"
+            aria-label={saved ? 'Remove from saved' : 'Save course'}
+            onClick={onToggleSave}
+          >
+            <i className={saved ? 'bi bi-heart-fill' : 'bi bi-heart'}></i>
+          </button>
+        </div>
+
         <h3 className="course-card-title">{course.title}</h3>
-        <p className="course-card-desc">{course.description}</p>
 
         <div className="course-card-rating">
           <Stars count={course.rating} />
@@ -61,14 +63,9 @@ export default function CourseCard({ course,saved = false, onToggleSave  }) {
         </div>
 
         <div className="course-card-footer">
-          <div className="course-card-price">
-            <span className="course-card-price-current">
-              Rs. {course.price.toLocaleString()}/-
-            </span>
-            <span className="course-card-price-original">
-              Rs. {course.originalPrice.toLocaleString()}/-
-            </span>
-          </div>
+          <span className="course-card-price-current">
+            Rs. {course.price.toLocaleString()}/-
+          </span>
           <button className="btn btn-outline-brand-navy course-card-enroll">
             Enroll Now
           </button>

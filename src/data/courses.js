@@ -43,56 +43,6 @@ export const continueLearning = [
   },
 ]
 
-export const topPicks = [
-  {
-    id: 't1',
-    dateRange: '12–24 Jan',
-    title: 'UI/UX: Master the Art of Design',
-    description:
-      'Learn the fundamentals of user interface and user experience design through hands-on projects and real case studies.',
-    rating: 5,
-    reviews: 117,
-    price: 8000,
-    originalPrice: 10000,
-    thumb,
-  },
-  {
-    id: 't2',
-    dateRange: '2–14 Feb',
-    title: 'Full-Stack Web Development Bootcamp',
-    description:
-      'Build complete web applications from scratch using modern frameworks, covering both frontend and backend.',
-    rating: 4,
-    reviews: 89,
-    price: 9500,
-    originalPrice: 12000,
-    thumb,
-  },
-  {
-    id: 't3',
-    dateRange: '20 Jan–5 Feb',
-    title: 'Digital Marketing Essentials',
-    description:
-      'Master SEO, social media, and content strategy to grow any brand online with confidence.',
-    rating: 5,
-    reviews: 64,
-    price: 6500,
-    originalPrice: 8500,
-    thumb,
-  },
-  {
-    id: 't4',
-    dateRange: '15–28 Feb',
-    title: 'Data Analysis with Python',
-    description:
-      'Get hands-on with pandas, NumPy, and visualization libraries to turn raw data into insight.',
-    rating: 4,
-    reviews: 132,
-    price: 8800,
-    originalPrice: 11000,
-    thumb,
-  },
-]
 
 export const trendingCourses = [
   {
@@ -143,6 +93,7 @@ export const trendingCourses = [
     originalPrice: 5000,
     thumb,
   },
+  
 ]
 
 export const featuredSpotlights = [
@@ -176,4 +127,14 @@ export const savedCourses = [
   { ...allCourses[2], id: 's2' },
   { ...allCourses[4], id: 's3' },
   { ...allCourses[6], id: 's4' },
+]
+export const topPicks = [
+  { id: 't1', duration: '14h 21m', title: 'UI/UX: Master the Art of Design', rating: 5, reviews: 117, price: 8000, thumb },
+  { id: 't2', duration: '25h 50m', title: 'Full-Stack Web Development Bootcamp', rating: 4, reviews: 89, price: 9500, thumb },
+  { id: 't3', duration: '18h 10m', title: 'Digital Marketing Essentials', rating: 5, reviews: 64, price: 6500, thumb },
+  { id: 't4', duration: '22h 40m', title: 'Data Analysis with Python', rating: 4, reviews: 132, price: 8800, thumb },
+  { id: 't5', duration: '16h 05m', title: 'Public Speaking & Communication Skills', rating: 5, reviews: 201, price: 5000, thumb },
+  { id: 't6', duration: '20h 30m', title: 'Financial Literacy for Beginners', rating: 5, reviews: 98, price: 4500, thumb },
+  { id: 't7', duration: '19h 45m', title: 'Spoken English Mastery', rating: 4, reviews: 156, price: 4000, thumb },
+  { id: 't8', duration: '23h 15m', title: 'Mathematics for High School', rating: 5, reviews: 174, price: 3500, thumb },
 ]

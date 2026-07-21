@@ -14,14 +14,11 @@ export default function HomePage() {
 
   return (
     <div className="home-page">
-      <div className="home-page-topbar">
-        <div>
-          <h1 className="home-greeting">
-            Hello {studentName}, Welcome to Radiant Elite Tutors!
-          </h1>
-        </div>
-       
-      </div>
+     <div className="home-page-topbar">
+  <h1 className="home-greeting">
+    Hello {studentName}, Welcome to Radiant Elite Tutors!
+    </h1>
+  </div>
          <div className="d-flex gap-2 flex-grow-1" style={{ maxWidth: 480 }}>
           <input
             className="form-control search-box"
