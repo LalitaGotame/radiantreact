@@ -8,7 +8,7 @@ function Stars({ count }) {
   )
 }
 
-export function ContinueCourseCard({ course }) {
+export function ContinueCourseCard({ course, onContinue }) {
   return (
     <div className="continue-card">
       <img src={course.thumb} alt="" className="continue-card-thumb" />
@@ -24,9 +24,16 @@ export function ContinueCourseCard({ course }) {
             <div className="continue-card-instructor-role">Instructor</div>
           </div>
         </div>
+
+       
+        <button
+          type="button"
+          className="btn btn-brand-navy continue-learning-btn mt-4"
+          onClick={onContinue}
+        >
+          Continue Learning
+        </button>
       </div>
-   ]
-   '
     </div>
   )
 }

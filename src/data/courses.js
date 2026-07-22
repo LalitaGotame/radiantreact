@@ -144,3 +144,17 @@ export const liveClassCategories = ['All', 'MBS']
 
 export const enrolledCourses = []
 export const enrolledLiveClasses = []
+
+export const purchaseHistory = [
+  {
+    id: 'p1',
+    title: 'Strategic Management',
+    thumb,
+    status: 'expired', // 'active' | 'pending' | 'expired'
+    rating: 4,
+    purchasedDate: 'Apr 29, 2026',
+    expiresDate: 'Jun 28, 2026',
+    price: 500.0,
+    paymentType: 'Manual',
+  },
+]

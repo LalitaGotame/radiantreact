@@ -1289,3 +1289,364 @@ body {
   font-weight: 700;
   color: #1a2b3c;
 }
+.course-grid-section-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.subscription-stat-icon-completed {
+  background: #1fa971;
+}
+
+.subscription-stat-icon-avg {
+  background: #19b5ff;
+}
+.purchase-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 34.8px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.purchase-card-image-wrap {
+  position: relative;
+  height: 190px;
+}
+
+.purchase-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.purchase-status-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.purchase-status-active {
+  background: #1fa971;
+}
+
+.purchase-status-pending {
+  background: #f6b100;
+}
+
+.purchase-status-expired {
+  background: #e0342f;
+}
+
+.purchase-card-body {
+  padding: 14px 16px 18px;
+}
+
+.purchase-card-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.purchase-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a2b3c;
+  margin: 0;
+}
+
+.purchase-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--brand-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.purchase-card-dates {
+  font-size: 0.75rem;
+  color: var(--brand-text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+.purchase-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.purchase-card-price {
+  font-weight: 700;
+  color: var(--brand-navy);
+}
+
+.purchase-card-tags {
+  display: flex;
+  gap: 6px;
+}
+
+.purchase-tag {
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 5px;
+  background: #eee;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.purchase-tag.purchase-status-active,
+.purchase-tag.purchase-status-pending,
+.purchase-tag.purchase-status-expired {
+  color: #fff;
+}
+.profile-top-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.profile-card,
+.profile-mini-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 1.75rem;
+}
+
+.profile-card {
+  flex: 1;
+  min-width: 320px;
+  text-align: center;
+}
+
+.profile-card-header h3 {
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin-bottom: 2px;
+}
+
+.profile-card-header p {
+  font-size: 0.85rem;
+  color: var(--brand-text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  width: 90px;
+  margin: 0 auto 1rem;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #d9dce1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: #fff;
+  overflow: hidden;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-edit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--brand-navy);
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 0.8rem;
+}
+
+.profile-name {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.profile-email {
+  font-size: 0.85rem;
+  color: var(--brand-text-muted);
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-phone-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-side-cards {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profile-mini-card {
+  text-align: center;
+}
+
+.profile-mini-card-icon {
+  font-size: 1.5rem;
+  color: var(--brand-navy);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.profile-mini-card h4 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.profile-mini-card p {
+  font-size: 0.85rem;
+  color: var(--brand-text-muted);
+  margin: 0;
+}
+
+.profile-progress-ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-progress-ring-inner {
+  width: 78px;
+  height: 78px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--brand-navy);
+}
+
+.profile-progress-hint {
+  font-size: 0.8rem;
+  color: #1fa971;
+}
+
+.profile-time-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-time-total span {
+  font-size: 0.9rem;
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
+.profile-time-total h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+  margin: 4px 0 1.5rem;
+}
+
+.profile-time-split {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1.5rem;
+}
+
+.profile-time-split span {
+  font-size: 0.8rem;
+  color: var(--brand-text-muted);
+}
+
+.profile-time-split h3 {
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin: 4px 0 0;
+}
+
+.profile-weekly-activity-label {
+  font-size: 0.85rem;
+  color: var(--brand-text-muted);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.profile-weekly-bars {
+  display: flex;
+  gap: 10px;
+}
+
+.profile-weekly-bar-track {
+  flex: 1;
+  height: 20px;
+  background: #eef1f5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.profile-weekly-bar-fill {
+  height: 100%;
+  background: var(--brand-navy);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  min-width: 8px;
+}
+
+.profile-weekly-bar-fill span {
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+}

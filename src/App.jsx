@@ -8,6 +8,9 @@ import FeaturedCoursesPage from './pages/FeaturedCoursesPage.jsx'
 import SavedCoursesPage from './pages/SavedCoursesPage.jsx'
 import AllLiveClassesPage from './pages/AllLiveClassesPage.jsx'
 import MySubscriptionsPage from './pages/MySubscriptionsPage.jsx'
+import CoursesProgressPage from './pages/CoursesProgressPage.jsx'
+import PurchaseHistoryPage from './pages/PurchaseHistoryPage.jsx'
+import MyProfilePage from './pages/MyProfilePage.jsx'   
 
 export default function App() {
   return (
@@ -22,7 +25,11 @@ export default function App() {
         <Route path="/saved" element={<SavedCoursesPage />} />
         <Route path="/all-live-class" element={<AllLiveClassesPage />} />
         <Route path="/subscriptions" element={<MySubscriptionsPage />} />
+        <Route path="/progress" element={<CoursesProgressPage />} />
+        <Route path="/purchase-history" element={<PurchaseHistoryPage />} />
+        <Route path="/profile" element={<MyProfilePage/>}>
       </Route>
+    </Route>
     </Routes>
   )
 }  
