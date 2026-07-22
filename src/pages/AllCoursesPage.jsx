@@ -21,22 +21,29 @@ export default function AllCoursesPage() {
     setActiveCategory(category)
     setVisibleCount(PAGE_SIZE)
   }
-
+const studentName = 'Laila';
   return (
+    
     <div className="home-page">
       <div className="home-page-topbar">
         <div>
-          <h1 className="home-greeting">
-            Hello Sagar,
-            <br />
+          <h1 className="home-greeting mt-4 mx-4">
+            Hello {studentName},<br />  
             Welcome to Radiant Elite Tutors!
           </h1>
         </div>
-        <div className="home-search-bar">
-          <i className="bi bi-search"></i>
-          <input type="search" placeholder="Search courses, instructors..." />
-        </div>
+        
       </div>
+      <div className="d-flex gap-2 flex-grow-1" style={{ maxWidth: 480 }}>
+          <input
+            className="form-control search-box"
+            type="search"
+            placeholder="Search..."
+          />
+          <button className="btn btn-search px-4 text-nowrap">
+            <i className="fa-solid fa-magnifying-glass"></i> Search
+          </button>
+        </div>
 
       <h2 className="all-courses-heading">All Courses</h2>
 

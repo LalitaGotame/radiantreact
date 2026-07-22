@@ -138,3 +138,9 @@ export const topPicks = [
   { id: 't7', duration: '19h 45m', title: 'Spoken English Mastery', rating: 4, reviews: 156, price: 4000, thumb },
   { id: 't8', duration: '23h 15m', title: 'Mathematics for High School', rating: 5, reviews: 174, price: 3500, thumb },
 ]
+
+export const liveClasses = []
+export const liveClassCategories = ['All', 'MBS']
+
+export const enrolledCourses = []
+export const enrolledLiveClasses = []

@@ -11,7 +11,7 @@ const menuGroups = [
     label: 'Learning Content',
     items: [
       { to: '/courses', icon: 'bi-journal-bookmark-fill', text: 'All Courses' },
-      { to: '/live-classes', icon: 'bi-camera-video-fill', text: 'All Live Classes' },
+      { to: '/all-live-class', icon: 'bi-camera-video-fill', text: 'All Live Classes' },
       { to: '/saved', icon: 'bi-heart-fill', text: 'Saved Courses' },
     ],
   },

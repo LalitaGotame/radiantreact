@@ -1137,3 +1137,155 @@ body {
   opacity: 0;
   pointer-events: none;
 }
+
+.page-search-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.75rem;
+  max-width: 480px;
+}
+
+.page-search-input {
+  flex: 1;
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.page-search-btn {
+  white-space: nowrap;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.empty-state-icon {
+  font-size: 2.5rem;
+  color: #dc3545;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.empty-state h3 {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  color: var(--brand-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.empty-state-search {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.empty-state-search input {
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  width: 220px;
+  font-family: 'Poppins', sans-serif;
+}
+.saved-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.saved-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--brand-navy);
+  background: #fff;
+  color: var(--brand-navy);
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.saved-tab:hover {
+  background: var(--brand-light-blue);
+}
+
+.saved-tab.is-active {
+  background: var(--brand-navy);
+  color: #fff;
+}
+
+.saved-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  padding: 1px 7px;
+  font-size: 0.75rem;
+}
+
+.saved-tab:not(.is-active) .saved-tab-count {
+  background: var(--brand-light-blue);
+  color: var(--brand-navy);
+}
+
+.saved-tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0342f;
+  display: inline-block;
+}
+.subscription-stats {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.subscription-stat-card {
+  flex: 1;
+  min-width: 260px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.subscription-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.subscription-stat-icon-courses {
+  background: var(--brand-navy);
+}
+
+.subscription-stat-icon-live {
+  background: #e0342f;
+}
+
+.subscription-stat-label {
+  font-size: 0.85rem;
+  color: var(--brand-text-muted);
+}
+
+.subscription-stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a2b3c;
+}
