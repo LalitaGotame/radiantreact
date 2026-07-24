@@ -22,3 +22,51 @@ export const learningStats = {
     { day: 'Sun', minutes: 0 },
   ],
 }
+
+export const activeSessions = [
+  {
+    id: 1,
+    platform: 'Browser',
+    date: 'Jul 24, 2026',
+    opened: '11:51 AM',
+    closed: 'Active Now',
+    ip: '27.34.72.164',
+    isCurrent: true,
+  },
+  {
+    id: 2,
+    platform: 'Browser',
+    date: 'Jul 22, 2026',
+    opened: '12:44 PM',
+    closed: '11:51 AM',
+    ip: '27.34.72.142',
+    isCurrent: false,
+  },
+  {
+    id: 3,
+    platform: 'Browser',
+    date: 'Jul 21, 2026',
+    opened: '01:25 PM',
+    closed: '12:44 PM',
+    ip: '27.34.72.233',
+    isCurrent: false,
+  },
+  {
+    id: 4,
+    platform: 'Browser',
+    date: 'Jul 20, 2026',
+    opened: '12:33 PM',
+    closed: '01:25 PM',
+    ip: '27.34.72.246',
+    isCurrent: false,
+  },
+  {
+    id: 5,
+    platform: 'Browser',
+    date: 'Jul 20, 2026',
+    opened: '12:27 PM',
+    closed: '12:33 PM',
+    ip: '27.34.72.246',
+    isCurrent: false,
+  },
+]

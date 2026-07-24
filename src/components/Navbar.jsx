@@ -22,7 +22,7 @@ export default function Navbar() {
 
         <div className="d-flex gap-3">
           <NavLink
-            to="/"
+            to="/login"
             className={({ isActive }) =>
               `nav-auth-link ${isActive ? 'is-active' : 'is-inactive'}`
             }

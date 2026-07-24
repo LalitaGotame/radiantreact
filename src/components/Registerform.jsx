@@ -319,7 +319,7 @@ export default function RegisterForm() {
 
         <div className="text-center mt-3" style={{ fontSize: '0.85rem' }}>
           Already have an account?{' '}
-          <Link to="/" className="link-brand-navy">
+          <Link to="/login" className="link-brand-navy">
             Sign In!
           </Link>
         </div>

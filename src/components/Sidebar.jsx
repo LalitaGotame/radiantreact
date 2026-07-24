@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import profileAvatar from '../assets/profile-avatar.jpg'
 
@@ -40,7 +41,15 @@ const menuGroups = [
 ]
 
 export default function Sidebar({isOpen= true}) {
+  const navigate = useNavigate()
+
+const handleLogout = (e) => {
+  e.stopPropagation()
+  navigate('/')
+}
   return (
+    
+
      <aside className={`sidebar ${isOpen ? '' : 'sidebar-collapsed'}`}>
       <div className="sidebar-logo">
         <img src={logo} alt="Radiant Elite Tutors" height="56" />
@@ -65,13 +74,22 @@ export default function Sidebar({isOpen= true}) {
           </div>
         ))}
       </nav>
+     
       <div className="sidebar-profile-card">
-        <img src={profileAvatar} alt="" className="sidebar-profile-avatar" />
-        <div>
-          <div className="sidebar-profile-name">Laila</div>
-          <div className="sidebar-profile-role">Student</div>
-        </div>
-      </div>
+  <img src={profileAvatar} alt="" className="sidebar-profile-avatar" />
+  <div className="sidebar-profile-info">
+    <div className="sidebar-profile-name">Sagar Timilsina</div>
+    <div className="sidebar-profile-role">student</div>
+  </div>
+  <button
+    type="button"
+    className="sidebar-logout-icon"
+    onClick={handleLogout}
+    aria-label="Logout"
+  >
+    <i className="bi bi-box-arrow-right"></i>
+  </button>
+</div>
 
       
     </aside>
